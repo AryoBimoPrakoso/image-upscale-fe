@@ -50,7 +50,7 @@ export default function ImageUploader({
         <input
           type="file"
           className="hidden"
-          accept="image/png,image/jpeg,image/webp"
+          accept="image/jpeg,image/webp"
           onChange={(e) => onFileChange(e.target.files?.[0] ?? null)}
         />
       </label>

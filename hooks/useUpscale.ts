@@ -32,8 +32,8 @@ export function useUpscale() {
     const img = new Image();
     img.onload = () => {
       setWarning(
-        img.width > 2000 || img.height > 2000
-          ? "Foto memiliki resolusi tinggi (>2000px). Karena diproses tanpa adanya GPU, proses mungkin memakan waktu lebih lama."
+        img.width > 1000 || img.height > 1000
+          ? "Foto memiliki resolusi tinggi (>1000px). Karena diproses tanpa adanya GPU, proses mungkin memakan waktu lebih lama."
           : null
       );
     };

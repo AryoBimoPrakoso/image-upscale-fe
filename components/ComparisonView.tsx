@@ -62,7 +62,7 @@ export default function ComparisonView({ previewUrl, result, scale }: Props) {
       <div className="mt-8 flex justify-center">
         <a
           href={result}
-          download={`hasil_upscale_${scale}x.png`}
+          download={`hasil_upscale_${scale}x.jpeg`}
           className={`flex items-center gap-2 text-white px-10 py-3 rounded-full font-bold transition-all hover:scale-105 active:scale-95 ${accentClass.btn} shadow-lg`}
         >
           Unduh Citra Hasil

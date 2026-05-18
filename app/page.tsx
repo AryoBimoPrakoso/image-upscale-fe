@@ -41,7 +41,7 @@ export default function Home() {
           <h1 className="text-4xl font-bold tracking-tight text-gray-900">
             Peningkat Resolusi Gambar
           </h1>
-          <p className="text-gray-500 font-medium">Unggah dalam format PNG/JPG/JPEG/WEBP</p>
+          <p className="text-gray-500 font-medium">Unggah dalam format JPG/JPEG/WEBP</p>
         </div>
 
         {/* Pemilih skala */}
