@@ -36,13 +36,38 @@ export default function ImageUploader({
   return (
     <div className="space-y-4">
       {/* Area upload */}
-      <label className="relative group flex flex-col items-center justify-center w-full h-64 border-2 border-dashed border-gray-300 rounded-2xl cursor-pointer hover:border-black hover:bg-white transition-all overflow-hidden">
+      <label
+        className={`
+          relative group flex flex-col items-center justify-center
+          w-full h-64 border-2 border-dashed border-gray-300
+          rounded-2xl overflow-hidden transition-all
+          ${
+            loading
+              ? "cursor-not-allowed opacity-70"
+              : "cursor-pointer hover:border-black hover:bg-white"
+          }
+        `}
+      >
         {previewUrl ? (
-          <img src={previewUrl} alt="Preview" className="w-full h-full object-cover" />
+          <img
+            src={previewUrl}
+            alt="Preview"
+            className="w-full h-full object-cover"
+          />
         ) : (
           <div className="flex flex-col items-center text-gray-400">
-            <svg className="w-10 h-10 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
+            <svg
+              className="w-10 h-10 mb-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M12 4v16m8-8H4"
+              />
             </svg>
             <p className="text-sm">Klik untuk mengunggah gambar</p>
           </div>
@@ -50,6 +75,7 @@ export default function ImageUploader({
         <input
           type="file"
           className="hidden"
+          disabled={loading}
           accept="image/jpeg,image/webp"
           onChange={(e) => onFileChange(e.target.files?.[0] ?? null)}
         />
@@ -63,15 +89,18 @@ export default function ImageUploader({
       )}
 
       {/* Tombol proses */}
+      {/* Tombol proses */}
       <button
         onClick={onUpload}
         disabled={loading || !previewUrl}
         className={`
-          w-full py-4 rounded-xl font-semibold transition-all shadow-lg
-          ${loading || !previewUrl
-            ? "bg-gray-200 text-gray-400 cursor-not-allowed shadow-none"
-            : `${cfg.color} text-white active:scale-[0.98]`}
-        `}
+    w-full py-4 rounded-xl font-semibold transition-all shadow-lg
+    ${
+      loading || !previewUrl
+        ? "bg-gray-200 text-gray-400 cursor-not-allowed shadow-none"
+        : `${cfg.color} text-white active:scale-[0.98]`
+    }
+  `}
       >
         {loading ? (
           <span className="flex items-center justify-center gap-3">
@@ -80,7 +109,11 @@ export default function ImageUploader({
               {formatTime(elapsedTime)}
             </span>
           </span>
+        ) : !previewUrl ? (
+          // Teks saat idle / gambar belum dipilih
+          "Unggah Gambar LR (Low Resolution) dan Pilih ukuran skala pembesaran"
         ) : (
+          // Teks saat gambar sudah siap diproses
           `Upscale ${scale}× Sekarang`
         )}
       </button>
@@ -99,7 +132,9 @@ export default function ImageUploader({
 
       {/* Pesan error */}
       {error && (
-        <p className="text-sm text-red-500 bg-red-50 rounded-xl px-4 py-3">{error}</p>
+        <p className="text-sm text-red-500 bg-red-50 rounded-xl px-4 py-3">
+          {error}
+        </p>
       )}
     </div>
   );

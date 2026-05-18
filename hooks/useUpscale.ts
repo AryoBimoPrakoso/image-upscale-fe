@@ -42,6 +42,21 @@ export function useUpscale() {
     return () => URL.revokeObjectURL(url);
   }, [file]);
 
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (loading) {
+        e.preventDefault();
+        e.returnValue = "";
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [loading]);
+
   // ─── Ganti skala — reset hasil ────────────────────────────────────────────
   const handleScaleChange = (newScale: Scale) => {
     setScale(newScale);
@@ -51,6 +66,8 @@ export function useUpscale() {
 
   // ─── Ganti file — reset semua state ──────────────────────────────────────
   const handleFileChange = (newFile: File | null) => {
+    if (loading) return;
+
     setFile(newFile);
     setResult(null);
     setInfo(null);
