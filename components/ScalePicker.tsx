@@ -19,7 +19,7 @@ export default function ScalePicker({ scale, onScaleChange, disabled }: Props) {
           onClick={() => !disabled && onScaleChange(s)}
           disabled={disabled}
           className={`
-            flex flex-col items-center px-8 py-4 rounded-2xl border-2 transition-all
+            flex flex-col items-center px-8 py-4 rounded-2xl border-2 transition-all w-50
             ${disabled ? "opacity-50 cursor-not-allowed" : ""}
             ${scale === s
               ? "border-black bg-white shadow-lg scale-105"

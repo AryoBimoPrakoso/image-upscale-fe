@@ -10,12 +10,12 @@ export type ImageInfo = {
 export const SCALE_CONFIG: Record<Scale, { label: string; desc: string; color: string }> = {
   2: {
     label: "2×",
-    desc: "Skala pembesaran standar",
+    desc: "Peningkatan detail yang lebih seimbang dan efisien.",
     color: "bg-violet-600 hover:bg-violet-700 shadow-violet-100",
   },
   4: {
     label: "4×",
-    desc: "Skala pembesaran maksimal",
+    desc: "Peningkatan detail lebih agresif untuk citra tertentu.",
     color: "bg-blue-600 hover:bg-blue-700 shadow-blue-100",
   },
 };
@@ -28,8 +28,9 @@ export const imageCache: Record<string, { url: string; info: ImageInfo }> = {};
 
 // ─── Sequence pesan loading ──────────────────────────────────────────────────
 export const LOADING_MESSAGES = [
-  { delay: 0,     text: "Inisialisasi pipeline Real-ESRGAN..." },
-  { delay: 3000,  text: "Menerapkan teknik Tiling (128px)..." },
-  { delay: 20000, text: "Model sedang melakukan inferensi pada fragmen citra..." },
-  { delay: 60000, text: "Hampir selesai, sedang menggabungkan kembali hasil..." },
+  { delay: 0,     text: "Menyiapkan proses peningkatan kualitas gambar..." },
+  { delay: 10000,  text: "Menganalisis detail dan struktur gambar..." },
+  { delay: 30000, text: "Sedang meningkatkan detail gambar..." },
+  { delay: 60000, text: "Hampir selesai, sedang menyiapkan hasil akhir..." },
+  { delay: 18000, text: "Proses masih berjalan, sedang menyempurnakan detail gambar..." },
 ];
