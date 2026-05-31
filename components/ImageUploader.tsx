@@ -76,7 +76,7 @@ export default function ImageUploader({
           type="file"
           className="hidden"
           disabled={loading}
-          accept="image/jpeg,image/webp"
+          accept="image/png,image/jpeg,image/webp"
           onChange={(e) => onFileChange(e.target.files?.[0] ?? null)}
         />
       </label>

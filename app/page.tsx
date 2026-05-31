@@ -6,11 +6,6 @@ import ImageUploader from "@/components/ImageUploader";
 import ResultPanel from "@/components/ResultPanel";
 import ComparisonView from "@/components/ComparisonView";
 
-/**
- * Halaman utama — hanya bertugas sebagai layout.
- * Semua state dan logic dikelola oleh hook useUpscale.
- * Semua UI dikelola oleh komponen masing-masing.
- */
 export default function Home() {
   const {
     file,
@@ -41,7 +36,7 @@ export default function Home() {
           <h1 className="text-4xl font-bold tracking-tight text-gray-900">
             Peningkatan Resolusi Citra
           </h1>
-          <p className="text-gray-500 font-medium">Unggah dalam format JPG/JPEG/WEBP</p>
+          <p className="text-gray-500 font-medium">Unggah dalam format PNG/JPG/JPEG/WEBP</p>
         </div>
 
         {/* Pemilih skala */}
