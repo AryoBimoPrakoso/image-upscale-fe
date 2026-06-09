@@ -9,7 +9,7 @@ export function useUpscale() {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [result, setResult] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [scale, setScale] = useState<Scale>(4);
+  const [scale, setScale] = useState<Scale | null >(null);
   const [info, setInfo] = useState<ImageInfo | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [warning, setWarning] = useState<string | null>(null);
@@ -76,7 +76,7 @@ export function useUpscale() {
 
   // ─── Proses upscaling ─────────────────────────────────────────────────────
   const handleUpload = async () => {
-    if (!file || loading) return;
+    if (!file || !scale || loading) return;
 
     setLoading(true);
     setResult(null);

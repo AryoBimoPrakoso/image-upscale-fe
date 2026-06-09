@@ -5,7 +5,7 @@ import { ImageInfo } from "@/lib/constants";
 type Props = {
   previewUrl: string | null;
   loading: boolean;
-  scale: Scale;
+  scale: Scale | null;
   warning: string | null;
   error: string | null;
   info: ImageInfo | null;
@@ -31,7 +31,7 @@ export default function ImageUploader({
   onFileChange,
   onUpload,
 }: Props) {
-  const cfg = SCALE_CONFIG[scale];
+  const cfgColor = scale ? SCALE_CONFIG[scale].color : "";
 
   return (
     <div className="space-y-4">
@@ -88,19 +88,20 @@ export default function ImageUploader({
         </div>
       )}
 
-      {/* Tombol proses */}
+  
       {/* Tombol proses */}
       <button
         onClick={onUpload}
-        disabled={loading || !previewUrl}
+        // Tombol otomatis disabled jika loading, gambar belum diunggah, atau skala belum dipilih
+        disabled={loading || !previewUrl || !scale} 
         className={`
-    w-full py-4 rounded-xl font-semibold transition-all shadow-lg
-    ${
-      loading || !previewUrl
-        ? "bg-gray-200 text-gray-400 cursor-not-allowed shadow-none"
-        : `${cfg.color} text-white active:scale-[0.98]`
-    }
-  `}
+          w-full py-4 rounded-xl font-semibold transition-all shadow-lg
+          ${
+            loading || !previewUrl || !scale
+              ? "bg-gray-200 text-gray-400 cursor-not-allowed shadow-none"
+              : `${cfgColor} text-white active:scale-[0.98]`
+          }
+        `}
       >
         {loading ? (
           <span className="flex items-center justify-center gap-3">
@@ -110,10 +111,11 @@ export default function ImageUploader({
             </span>
           </span>
         ) : !previewUrl ? (
-          // Teks saat idle / gambar belum dipilih
           "Unggah Gambar LR (Low Resolution) dan Pilih ukuran skala pembesaran"
+        ) : !scale ? (
+          // Teks peringatan tambahan jika gambar sudah ada tetapi skala belum dipilih
+          "Silakan pilih skala pembesaran terlebih dahulu"
         ) : (
-          // Teks saat gambar sudah siap diproses
           `Upscale ${scale}× Sekarang`
         )}
       </button>
