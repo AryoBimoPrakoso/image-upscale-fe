@@ -6,7 +6,7 @@ import { Scale } from "@/lib/constants";
 type Props = {
   previewUrl: string;
   result: string;
-  scale: Scale;
+  scale: Scale | null;
 };
 
 /**

@@ -41,7 +41,7 @@ export default function Home() {
 
         {/* Pemilih skala */}
         <ScalePicker
-          scale={scale}
+          scale={scale ?? 4}
           onScaleChange={handleScaleChange}
           disabled={loading}
         />

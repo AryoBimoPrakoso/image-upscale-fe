@@ -1,15 +1,12 @@
+// components/ScalePicker.tsx
 import { Scale, SCALE_CONFIG } from "@/lib/constants";
 
 type Props = {
-  scale: Scale;
+  scale: Scale | null; // Tambahkan "| null" di sini
   onScaleChange: (s: Scale) => void;
   disabled?: boolean;
 };
 
-/**
- * Komponen pemilih skala pembesaran (×2 / ×4).
- * Menampilkan dua tombol yang dapat dipilih pengguna.
- */
 export default function ScalePicker({ scale, onScaleChange, disabled }: Props) {
   return (
     <div className="flex justify-center gap-4">
@@ -21,7 +18,7 @@ export default function ScalePicker({ scale, onScaleChange, disabled }: Props) {
           className={`
             flex flex-col items-center px-8 py-4 rounded-2xl border-2 transition-all w-50
             ${disabled ? "opacity-50 cursor-not-allowed" : ""}
-            ${scale === s
+            ${scale === s  // Evaluasi ini akan aman jika nilai awal scale adalah null
               ? "border-black bg-white shadow-lg scale-105"
               : "border-gray-200 bg-white hover:border-gray-400 hover:shadow-md"}
           `}
